@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/your-username/my-website.git'
+                git 'https://github.com/NaveenSMB/webproject.git'
             }
         }
 
