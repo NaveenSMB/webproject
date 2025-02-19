@@ -16,14 +16,16 @@ pipeline {
 
         stage('Stop & Remove Old Container') {
             steps {
-                sh 'docker stop webcont || true'
-                sh 'docker rm webcont || true'
+                echo 'Stopping and removing old container if it exists...'
+                sh 'docker-compose down || true'
             }
         }
-        stage('Run new container'){
-          steps{
-            sh 'docker run -d -p 8081:80 --name webcont my-website'
-          }
+
+        stage('Start New Container with Compose') {
+            steps {
+                echo 'Starting container using Docker Compose...'
+                sh 'docker-compose up -d'
+            }
         }
     }
 }
